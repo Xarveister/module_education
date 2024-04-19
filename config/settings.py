@@ -9,12 +9,22 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
-
+import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
 from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+def get_env_values(env_var):
+    try:
+        return os.environ[env_var]
+    except KeyError:
+        error_msg = f'Set the {env_var} env variable in .env file'
+        raise ImproperlyConfigured(error_msg)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -165,8 +175,7 @@ EMAIL_ADMIN = EMAIL_HOST_USER
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
-# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+
 
 CELERY_BEAT_SCHEDULE = {
     'birthday_mail': {
