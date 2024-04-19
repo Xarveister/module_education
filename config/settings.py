@@ -9,12 +9,14 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
-from datetime import timedelta
+
 from pathlib import Path
 from decouple import config
-from django.core.exceptions import ImproperlyConfigured
+import os
+from datetime import timedelta
 from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
+
 
 load_dotenv()
 
