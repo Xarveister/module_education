@@ -26,6 +26,7 @@ def get_env_values(env_var):
         error_msg = f'Set the {env_var} env variable in .env file'
         raise ImproperlyConfigured(error_msg)
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -55,9 +56,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_celery_beat',
     'corsheaders',
-
-    'users.apps.UsersConfig',
-    'modules.apps.ModulesConfig',
+    'users',
+    'modules',
 ]
 
 MIDDLEWARE = [
@@ -174,8 +174,6 @@ EMAIL_ADMIN = EMAIL_HOST_USER
 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
-
-
 
 CELERY_BEAT_SCHEDULE = {
     'birthday_mail': {
